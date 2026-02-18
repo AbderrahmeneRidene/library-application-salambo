@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<div th:replace="/dashboard/fragments/header::blockcss"></div>
+</head>
+
+<body>
+
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div th:replace="/dashboard/fragments/header::preloader"></div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/header::logo"></div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/header::header"></div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/sidebarAgent::sidebar"></div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<div class="container-fluid mt-3">
+				<!--				<div th:replace="/dashboard/fragments/kpi::kpi"></div>-->
+
+				<div class="card">
+
+					<div class="card-body">
+
+						<h4 class="card-title">Informations de l'utilisateur authentifié</h4>
+
+						<div class="card-body">
+							<p class="mb-2"><strong>Nom de l'utilisateur :</strong> <span
+									th:text="${userName} +' '+${userLastName}"></span></p>
+							<p class="mb-2"><strong>Username :</strong> <span
+									sec:authentication="principal.username"></span>
+							</p>
+							<p class="mb-2"><strong>Utilisateur activé :</strong> <span
+									sec:authentication="principal.enabled"></span></p>
+							<p class="mb-2"><strong>Rôles (authorities) :</strong> <span
+									sec:authentication="authorities"></span>
+							</p>
+							<p class="mb-2"><strong>Adresse IP :</strong> <span
+									sec:authentication="details.remoteAddress"></span>
+							</p>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- #/ container -->
+			</div>
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/footer::footer"></div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<div th:replace="/dashboard/fragments/jsscripts::jsscripts"></div>
+
+</body>
+
+</html>

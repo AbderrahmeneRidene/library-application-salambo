@@ -1,0 +1,12 @@
+com\sipacademy\stockmanager\services\CustomUserDetailsService.class
+com\sipacademy\stockmanager\entities\User.class
+com\sipacademy\stockmanager\configuration\SecurityConfig.class
+com\sipacademy\stockmanager\controllers\ActualiteController.class
+com\sipacademy\stockmanager\StockmanagerApplication.class
+com\sipacademy\stockmanager\entities\Actualite.class
+com\sipacademy\stockmanager\configuration\CustomAuthenticationSuccessHandler.class
+com\sipacademy\stockmanager\entities\Role.class
+com\sipacademy\stockmanager\repositories\UserRepository.class
+com\sipacademy\stockmanager\services\ActualiteService.class
+com\sipacademy\stockmanager\configuration\PasswordConfig.class
+com\sipacademy\stockmanager\repositories\ActualiteRepository.class

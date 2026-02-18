@@ -1,0 +1,37 @@
+<div th:fragment="sidebar" class="nk-sidebar">
+	<div class="nk-nav-scroll">
+		<ul class="metismenu" id="menu">
+			<li class="nav-label">Dashboard Agent</li>
+			<li>
+				<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+					<i class="icon-speedometer menu-icon"></i><span class="nav-text">Consulter les fournisseurs</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a th:href="@{/userAgent/listProviders}">Liste des fournisseurs</a></li>
+					<li><a href="#">Proposer un fournisseur</a></li>
+				</ul>
+			</li>
+			<li class="mega-menu mega-menu-sm">
+				<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+					<i class="icon-globe-alt menu-icon"></i><span class="nav-text">Consulter les produits</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a th:href="@{/userAgent/listArticles}">Liste des produits</a></li>
+					<li><a href="#">Proposer un produits</a></li>
+
+				</ul>
+			</li>
+			<li class="mega-menu mega-menu-sm">
+				<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+					<i class="icon-envelope menu-icon"></i><span class="nav-text">Tchat en ligne</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a href="#">Boite de réception</a></li>
+					<li><a href="#">Messages envoyés</a></li>
+
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+</div>

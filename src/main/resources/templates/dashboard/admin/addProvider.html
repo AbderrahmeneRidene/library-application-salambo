@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<div th:replace="/dashboard/fragments/header::blockcss"></div>
+</head>
+
+<body>
+
+	<!--*******************
+        Preloader start
+    ********************-->
+	<div th:replace="/dashboard/fragments/header::preloader"></div>
+	<!--*******************
+        Preloader end
+    ********************-->
+
+
+	<!--**********************************
+        Main wrapper start
+    ***********************************-->
+	<div id="main-wrapper">
+
+		<!--**********************************
+            Nav header start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/header::logo"></div>
+		<!--**********************************
+            Nav header end
+        ***********************************-->
+
+		<!--**********************************
+            Header start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/header::header"></div>
+		<!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+		<!--**********************************
+            Sidebar start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/sidebarAdmin::sidebar"></div>
+		<!--**********************************
+            Sidebar end
+        ***********************************-->
+
+		<!--**********************************
+            Content body start
+        ***********************************-->
+		<div class="content-body">
+
+			<div class="container-fluid mt-3">
+				<!--				<div th:replace="/dashboard/fragments/kpi::kpi"></div>-->
+
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Ajouter un fournisseur</h4>
+							<div class="basic-form">
+								<form th:action="@{/provider/add}" th:method="POST" th:object="${provider}"
+									enctype="multipart/form-data">
+									<div class="form-group">
+										<label for="inputGroupFile01">Logo</label>
+										<div class="custom-file">
+											<input type="file" class="custom-file-input" id="inputGroupFile01"
+												name="files" accept="image/*" onchange="handleFileSelection(this)">
+											<label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+										</div>
+										<div id="preview"
+											style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+											<!-- Image preview will appear here -->
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-md-6">
+											<label>Name</label>
+											<input th:field="*{name}" type="text" class="form-control"
+												placeholder="name">
+											<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+												style="color: red;" class="validation-message">
+											</label>
+										</div>
+										<div class="form-group col-md-6">
+											<label>Email</label>
+											<input th:field="*{email}" type="text" class="form-control"
+												placeholder="email">
+											<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+												style="color: red;" class="validation-message">
+											</label>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label>Adresse</label>
+										<input class="form-control h-150px" rows="6" id="comment"
+											th:field="*{address}" placeholder="address"></input>
+										<label th:if="${#fields.hasErrors('address')}" th:errors="*{address}"
+											style="color: red;" class="validation-message">
+										</label>
+
+									</div>
+
+
+
+									<button type="submit" class="btn btn-dark">Créer un founisseur</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12">
+				</div>
+				<!-- #/ container -->
+			</div>
+		</div>
+		<!--**********************************
+            Content body end
+        ***********************************-->
+
+
+		<!--**********************************
+            Footer start
+        ***********************************-->
+		<div th:replace="/dashboard/fragments/footer::footer"></div>
+		<!--**********************************
+            Footer end
+        ***********************************-->
+	</div>
+	<!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+	<!--**********************************
+        Scripts
+    ***********************************-->
+	<div th:replace="/dashboard/fragments/jsscripts::jsscripts"></div>
+
+</body>
+
+</html>
+
+<script>
+	let selectedFile = null;
+
+	function handleFileSelection(input) {
+		const previewContainer = document.getElementById("preview");
+		const label = input.nextElementSibling;
+
+		// Clear the previous selection
+		previewContainer.innerHTML = "";
+
+		const file = input.files[0];  // Get the first file selected
+
+		if (file && file.type.startsWith("image/")) {
+			selectedFile = file;
+
+			const reader = new FileReader();
+
+			const imageContainer = document.createElement("div");
+			imageContainer.style.position = "relative";
+			imageContainer.style.display = "inline-block";
+			imageContainer.style.marginBottom = "10px";
+
+			reader.onload = function (e) {
+				const img = document.createElement("img");
+				img.src = e.target.result;
+				img.alt = "Image preview";
+				img.style.maxWidth = "150px";
+				img.style.maxHeight = "150px";
+				img.style.border = "1px solid #ccc";
+				img.style.borderRadius = "5px";
+				imageContainer.appendChild(img);
+
+				const deleteButton = document.createElement("button");
+				deleteButton.textContent = "X";
+				deleteButton.type = "button";
+
+				// Style du bouton pour le rendre rond
+				deleteButton.style.position = "absolute";
+				deleteButton.style.top = "5px";
+				deleteButton.style.right = "5px";
+				deleteButton.style.backgroundColor = "#ff0000";
+				deleteButton.style.color = "#fff";
+				deleteButton.style.border = "none";
+				deleteButton.style.width = "20px";
+				deleteButton.style.height = "20px";
+				deleteButton.style.borderRadius = "50%";
+				deleteButton.style.cursor = "pointer";
+				deleteButton.style.display = "flex";
+				deleteButton.style.alignItems = "center";
+				deleteButton.style.justifyContent = "center";
+				deleteButton.style.padding = "0";
+
+				deleteButton.onclick = function () {
+					selectedFile = null;
+					label.textContent = "Choose file";
+					previewContainer.innerHTML = "";  // Clear the preview
+					input.value = "";  // Clear the file input
+				};
+
+				imageContainer.appendChild(deleteButton);
+				previewContainer.appendChild(imageContainer);
+
+				// Get the file name and extension
+				let fileName = file.name;
+				const extensionIndex = fileName.lastIndexOf('.');
+				if (extensionIndex !== -1) {
+					const namePart = fileName.substring(0, extensionIndex); // Name before the extension
+					const extensionPart = fileName.substring(extensionIndex); // Extension including the dot
+					if (namePart.length > 10) {
+						fileName = namePart.substring(0, 10) + '...' + extensionPart;
+					}
+				}
+
+				label.textContent = fileName;
+			};
+
+			reader.readAsDataURL(file);
+		} else {
+			alert("The selected file is not a valid image.");
+		}
+	}
+</script>

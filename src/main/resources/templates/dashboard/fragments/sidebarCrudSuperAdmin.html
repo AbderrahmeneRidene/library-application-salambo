@@ -1,0 +1,27 @@
+<div th:fragment="sidebar" class="nk-sidebar">
+	<div class="nk-nav-scroll">
+		<ul class="metismenu" id="menu">
+			<li class="nav-label">Crud Super Admin</li>
+			<li>
+				<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+					<i class="icon-speedometer menu-icon"></i><span class="nav-text">Gestion des Super Admin</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a th:href="@{/superAdmin/list}">Liste des Super Admin</a></li>
+					<li><a th:href="@{/superAdmin/add}">Ajouter Super Admin</a></li>
+				</ul>
+			</li>
+			<li class="mega-menu mega-menu-sm">
+				<a class="has-arrow" href="javascript:void()" aria-expanded="false">
+					<i class="icon-globe-alt menu-icon"></i><span class="nav-text">Gestion des roles</span>
+				</a>
+				<ul aria-expanded="false">
+					<li><a th:href="@{/superAdmin/listUserRole}">Liste des user-roles</a></li>
+					<li><a th:href="@{/superAdmin/listRoles}">Liste des rôles</a></li>
+					<li><a th:href="@{/superAdmin/addRole}">Ajouter un rôle</a></li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+</div>

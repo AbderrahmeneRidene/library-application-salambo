@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+	<div th:replace="/frontviews/fragments/header::header"></div>
+</head>
+
+<body>
+	<!-- Spinner Start -->
+	<div id="spinner"
+		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+		<div class="spinner"></div>
+	</div>
+	<!-- Spinner End -->
+
+
+	<!-- Topbar Start -->
+	<div th:replace="/frontviews/fragments/topbar::topbar"></div>
+	<!-- Topbar End -->
+
+
+	<!-- Navbar & Carousel Start -->
+	<div class="container-fluid position-relative p-0">
+		<nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+			<a th:href="@{/home}" class="navbar-brand p-0">
+				<img th:src="@{/backoffice/images/logo-text.png}" style="width: auto; margin-left: auto; max-width: 50%;" alt="">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+				<span class="fa fa-bars"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse" >
+				<div class="navbar-nav ms-auto py-0" style="direction: rtl;">
+					<a th:href="@{/home}" class="nav-item nav-link">الإستقبال</a>
+					<a th:href="@{/about}" class="nav-item nav-link active">معطيات عامة</a>
+					<a th:href="@{/service}" class="nav-item nav-link">الخدمات</a>
+					<a th:href="@{/contact}" class="nav-item nav-link">للربط</a>
+				</div>
+				<butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal"
+					data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+				<a th:href="@{/login}" class="btn btn-primary py-2 px-4 ms-3">تسجيل الدخول</a>
+			</div>
+		</nav>
+
+		<div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="w-100" th:src="@{frontoffice/img/librerie-numerique.jpg}" alt="Image">
+					<div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+						<div class="p-3" style="max-width: 900px;">
+
+							<h1 class="display-4 text-white animated zoomIn">معطيات عامة</h1>
+							<a href="" class="h5 text-white"><i class="far fa-circle text-white px-2"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Navbar End -->
+
+
+	<!-- Full Screen Search Start -->
+	<div class="modal fade" id="searchModal" tabindex="-1">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content" style="background: rgba(9, 30, 62, .7);">
+				<div class="modal-header border-0">
+					<button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body d-flex align-items-center justify-content-center">
+					<div class="input-group" style="max-width: 600px;">
+						<input type="text" class="form-control bg-transparent border-primary p-3"
+							placeholder="Type search keyword">
+						<button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Full Screen Search End -->
+
+
+	<!-- About Start -->
+	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" style="direction: rtl;">
+		<div class="container py-5">
+			<div class="row g-5">
+				<div class="col-lg-7">
+					<div class="section-title position-relative pb-3 mb-5">
+						<h5 class="fw-bold text-primary text-uppercase">معطيات عامة</h5>
+						<h1 class="mb-0">تم وضع هذه المكتبة الرقمية في الخدمة منذ تاريخ 28 مارس 2024</h1>
+					</div>
+					<p class="mb-4" th:text="${sitting.description}"></p>
+					<div class="row g-0 mb-3">
+						<div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+							<h5 class="mb-3 me-3">تطبيقة مرنة وتوفر لكم ما تستحقونه</h5>
+						</div>
+						<div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+							<h5 class="mb-3 me-3">7/24</h5>
+						</div>
+					</div>
+					<div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+						<div class="bg-primary d-flex align-items-center justify-content-center rounded"
+							style="width: 60px; height: 60px;">
+							<i class="fa fa-phone-alt text-white"></i>
+						</div>
+						<div class="ps-4">
+							<h5 class="mb-2 me-4">إتصل بنا لإستفسار عن أي تسائل</h5>
+							<h4 class="text-primary mb-0" style="direction: ltr;" th:text="${sitting.phoneNumber1}"></h4>
+						</div>
+					</div>
+					<a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">تقدم بطلب أو بإستفسار</a>
+				</div>
+				<div class="col-lg-5" style="min-height: 500px;">
+					<div class="position-relative h-100">
+						<img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s"
+							th:src="@{frontoffice/img/about.jpg}" style="object-fit: cover;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- About End -->
+
+
+	<!-- Team Start -->
+	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="container py-5">
+			<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+				<h5 class="fw-bold text-primary text-uppercase">فريق العمل</h5>
+				<h1 class="mb-0">فريق عمل محترف جاهز لخدمتكم</h1>
+			</div>
+			<div class="row g-5">
+				<div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+					<div class="team-item bg-light rounded overflow-hidden">
+						<div class="team-img position-relative overflow-hidden">
+							<img class="img-fluid w-100" th:src="@{frontoffice/img/team-1.jpg}" alt="">
+							<div class="team-social">
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-twitter fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-facebook-f fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-instagram fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-linkedin-in fw-normal"></i></a>
+							</div>
+						</div>
+						<div class="text-center py-4">
+							<h4 class="text-primary">فولان بن فلتان</h4>
+							<p class="text-uppercase m-0">تقني سامي في مجال الميلتميديا</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+					<div class="team-item bg-light rounded overflow-hidden">
+						<div class="team-img position-relative overflow-hidden">
+							<img class="img-fluid w-100" th:src="@{frontoffice/img/team-2.jpg}" alt="">
+							<div class="team-social">
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-twitter fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-facebook-f fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-instagram fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-linkedin-in fw-normal"></i></a>
+							</div>
+						</div>
+						<div class="text-center py-4">
+							<h4 class="text-primary">فولان بن فلتان</h4>
+							<p class="text-uppercase m-0">تقني سامي في مجال الإتصالات</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 wow slideInUp" data-wow-delay="0.9s">
+					<div class="team-item bg-light rounded overflow-hidden">
+						<div class="team-img position-relative overflow-hidden">
+							<img class="img-fluid w-100" th:src="@{frontoffice/img/team-3.jpg}" alt="">
+							<div class="team-social">
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-twitter fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-facebook-f fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-instagram fw-normal"></i></a>
+								<a class="btn btn-lg btn-primary btn-lg-square rounded" href=""><i
+										class="fab fa-linkedin-in fw-normal"></i></a>
+							</div>
+						</div>
+						<div class="text-center py-4">
+							<h4 class="text-primary">فولان بن فلتان</h4>
+							<p class="text-uppercase m-0">تقني سامي في مجال الجغرفة الرقمية</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Team End -->
+
+
+	<!-- Footer Start -->
+	<div th:replace="/frontviews/fragments/footer::footer"></div>
+	<!-- Footer End -->
+
+
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+	<!-- JavaScript Libraries and Template Javascript -->
+	<div th:replace="/frontviews/fragments/jsscripts::jsscripts"></div>
+</body>
+
+</html>

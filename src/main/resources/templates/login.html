@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<div th:replace="/frontviews/fragments/header::header"></div>
+</head>
+
+<body>
+	<!-- Spinner Start -->
+	<div id="spinner"
+		class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+		<div class="spinner"></div>
+	</div>
+	<!-- Spinner End -->
+
+
+	<!-- Topbar Start -->
+	<div th:replace="/frontviews/fragments/topbar::topbar"></div>
+	<!-- Topbar End -->
+
+
+	<!-- Navbar & Carousel Start -->
+	<div class="container-fluid position-relative p-0">
+		<div th:replace="/frontviews/fragments/navbar::navbar"></div>
+
+		<div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="w-100" th:src="@{frontoffice/img/stock-manager-1.jpg}" alt="Image">
+
+					<div class="carousel-caption d-flex flex-column align-items-center justify-content-center" >
+						<div class="col-lg-5"></div>
+						<div class="col-lg-5" style="max-width: 600px;">
+							<div class="bg-primary rounded h-100 d-flex align-items-center p-5 wow zoomIn"
+								data-wow-delay="0.9s">
+								<form th:action="@{/login}" method="POST" class="mt-5 mb-3 login-input" style="direction: rtl;">
+									<div class="row g-3" >
+										<div class="col-xl-16">
+											<input type="text" name="email" class="form-control bg-light border-0"
+												placeholder="البريد الإلكتروني" style="height: 55px;" required>
+										</div>
+										<div class="col-16">
+											<input type="password" name="password"
+												class="form-control bg-light border-0" placeholder="كلمة السر"
+												style="height: 55px;" required>
+										</div>
+
+										<div class="col-12">
+											<button class="btn btn-dark w-100 py-3" type="submit">تسجيل الدخول</button>
+										</div>
+										<div align="center" th:if="${param.error}">
+											<p style="font-size: 20; color: #FF1C19;">Email or Password invalid,
+												please
+												verify</p>
+										</div>
+									</div>
+								</form>
+
+							</div>
+						</div>
+						<div class="col-lg-5"></div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Navbar & Carousel End -->
+
+
+
+
+
+	<!-- Vendor Start -->
+	<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="container py-5 mb-5">
+			<!--			<div class="owl-carousel vendor-carousel" th:each="logo : ${providersLogo}">
+					<img th:src="@{'/uploads/' + ${logo}}" alt="">
+				</div>-->
+			<div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 700px;">
+				<h5 class="fw-bold text-primary text-uppercase">الإدارة العامة للتكوين</h5>
+				<h1 class="mb-0">شعارات الإدارات التابعة لذات الإدارة العامة</h1>
+			</div>
+			<div class="bg-white">
+				<div class="owl-carousel vendor-carousel">
+					<img th:src="@{'/uploads/' + ${logo}}" th:alt="'Logo de ' + ${logo}"
+						th:each="logo : ${providersLogo}" style="max-height: 60px; width: auto;max-width: 100px;" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Vendor End -->
+
+
+	<!-- Footer Start -->
+	<div th:replace="/frontviews/fragments/footer::footer"></div>
+	<!-- Footer End -->
+
+
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+	<!-- JavaScript Libraries and Template Javascript -->
+	<div th:replace="/frontviews/fragments/jsscripts::jsscripts"></div>
+</body>
+
+</html>
