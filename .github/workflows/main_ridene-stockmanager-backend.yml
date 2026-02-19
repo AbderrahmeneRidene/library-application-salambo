@@ -13,7 +13,8 @@ jobs:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Set up Java version
         uses: actions/setup-java@v4
@@ -24,11 +25,17 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
+      - name: Rename JAR to a fixed name
+        run: |
+          mkdir -p target/fixed
+          cp target/*.jar target/fixed/app.jar
+          ls -l target/fixed
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: target/*.jar
+          path: target/fixed/app.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,6 +51,9 @@ jobs:
           name: java-app
           path: ./artifact
 
+      - name: List downloaded artifact
+        run: ls -l ./artifact
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -57,4 +67,4 @@ jobs:
         with:
           app-name: 'ridene-stockmanager-backend'
           slot-name: 'Production'
-          package: './artifact/*.jar'
+          package: './artifact/app.jar'
